@@ -1,0 +1,27 @@
+const bubble_link = document.getElementById("bb_link");
+const insertion_link = document.getElementById("ins_link");
+const selection_link = document.getElementById("sel_link");
+const slider = document.getElementById("sld");
+
+let tela = 1;
+
+function moveSlider(n) {
+    tela = n;
+    if (tela == 1) {
+        bubble_link.className = "active";
+        insertion_link.classList.remove("active");
+        selection_link.classList.remove("active");
+        slider.style.transform = "translateX(0)";
+    } else if (tela == 2) {
+        insertion_link.className = "active";
+        bubble_link.classList.remove("active");
+        selection_link.classList.remove("active");
+        slider.style.transform = "translateX(-100vw)";
+
+    } else if (tela == 3) {
+        selection_link.className = "active";
+        bubble_link.classList.remove("active");
+        insertion_link.classList.remove("active");
+        slider.style.transform = "translateX(-200vw)";
+    }
+}

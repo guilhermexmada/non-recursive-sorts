@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order-algs</title>
+    <link rel="stylesheet" href="./style.css" type="text/css">
+</head>
+
+<body>
+    <div class="wrappler">
+        <!-- menu h=12% -->
+        <header>
+            <nav>
+                <a href="#" id="bb_link" class="active" onclick="moveSlider(1)">Bubble Sort</a><!--pág 1 inicia ativo-->
+                <a href="#" id="ins_link" onclick="moveSlider(2)">Insertion Sort</a>
+                <a href="#" id="sel_link" onclick="moveSlider(3)">Selection Sort</a>
+            </nav>
+        </header>
+
+        <!-- slider h=58% -->
+        <div class="slider" id="sld">
+            <div class="view"> <!-- visualização -->
+                <div class="view-part" id="vp1"></div>
+                <div class="view-part" id="vp2"></div>
+                <div class="view-part" id="vp3"></div>
+            </div>
+
+            <!-- seções de opções -->
+            <section id="sec1">
+                <div class="control"></div>
+                <div class="code"></div>
+            </section>
+            <section id="sec2">
+                <div class="control"></div>
+                <div class="code"></div>
+            </section>
+            <section id="sec3">
+                <div class="control"></div>
+                <div class="code"></div>
+            </section>
+        </div>
+
+        <!-- rodapé h=10%-->
+        <footer>
+
+        </footer>
+    </div>
+</body>
+<script src="./script.js"></script>
+
+</html>
