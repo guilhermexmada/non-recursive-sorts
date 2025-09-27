@@ -107,8 +107,8 @@ section {
 
 /* controle */
 .vars {
-    width: 400px;
-    height: 200px;
+    width: 450px;
+    height: 250px;
     background-color: #fdc700;
     display: flex;
     flex-wrap: wrap;

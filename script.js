@@ -1,10 +1,12 @@
+// links para as telas dos algoritmos
 const bubble_link = document.getElementById("bb_link");
 const insertion_link = document.getElementById("ins_link");
 const selection_link = document.getElementById("sel_link");
-const slider = document.getElementById("sld");
+const slider = document.getElementById("sld"); // slider que contém as telas
 
-let tela = 1;
+let tela = 1; // tela inicial = bubble sort
 
+// move a tela 
 function moveSlider(n) {
     tela = n;
     if (tela == 1) {
