@@ -7,7 +7,6 @@
     <title>Order-algs</title>
     <link rel="stylesheet" href="./style.css" type="text/css">
 </head>
-
 <body>
     <div class="wrappler">
         <!-- menu h=12% -->
@@ -22,7 +21,9 @@
         <!-- slider h=58% -->
         <div class="slider" id="sld">
             <div class="view"> <!-- visualização -->
-                <div class="view-part" id="vp1"></div>
+                <div class="view-part" id="vp1">
+                    <div id="bubble-sort-container" class="array-container"></div>
+                </div>
                 <div class="view-part" id="vp2"></div>
                 <div class="view-part" id="vp3"></div>
             </div>
@@ -30,8 +31,17 @@
             <!-- seções de opções -->
             <section id="sec1">
                 <div class="control">
-                    <div class="vars"></div>
-                    <div class="barr"></div>
+                    <div class="vars">
+                        <div class="var" id="i"></div>
+                        <div class="var" id="fim"></div>
+                        <div class="var" id="aux"></div>
+                        <div class="var" id="t"></div>
+                    </div>
+                    <div class="barr">
+                        <button onclick="addItem(bubbleArray)">Add</button>
+                        <button onclick="bubbleSort(bubbleArray, time)">Sort</button>
+                        <button onclick="setTime()">Timing</button>
+                    </div>
                 </div>
                 <div class="code"></div>
             </section>
@@ -57,6 +67,6 @@
         </footer>
     </div>
 </body>
+<script src="./bubbleSort.js"></script>
 <script src="./script.js"></script>
-
 </html>
