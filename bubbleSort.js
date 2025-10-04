@@ -5,22 +5,26 @@ const varFim = document.querySelector("#fim");
 const varAux = document.querySelector("#aux");
 const varL = document.querySelector("#l");
 const varT = document.querySelector("#t");
+const varC = document.querySelector("#c");
 
 // array de exemplo
-let bubbleArray = [3, 2, 1];
+let bubbleArray = [4,3,6,7,9,10,5,8,10,1];
 // delay de animação inicial
 let delay = 3000;
+// passos
+let steps = 0;
 
 // renderiza array
 renderArray(bubbleArray);
 
 // atualizando os parâmetros no HTML
 function updateVars(array, i, fim, aux, time) {
-    varT.innerHTML = "Delay: " + time + "ms";
-    varL.innerHTML = "Tamanho: " + array.length;
-    varI.innerHTML = "i = " + i;
-    varFim.innerHTML = "fim = " + fim;
-    varAux.innerHTML = "aux = " + aux;
+    varT.innerHTML = `<strong>${time}ms</strong> <em>⏱ Delay</em>`;
+    varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
+    varI.innerHTML = `<strong>${i}</strong> <em>📦 i</em>`;
+    varFim.innerHTML = `<strong>${fim}</strong> <em>📦 fim</em>`;
+    varAux.innerHTML = `<strong>${aux}</strong> <em>📦 aux</em>`;
+    varC.innerHTML = `<strong>${steps}</strong> <em>🟰 Iterações</em>`;
 }
  
 // inicialiando os parâmetros no HTML
@@ -29,16 +33,19 @@ updateVars(bubbleArray, 0, bubbleArray.length - 1, "Undefined", delay)
 // define delay da animação
 function setTime() {
     let newDelay = prompt("Digite o tempo de animação: ");
+    if(newDelay == null){
+        newDelay = delay;
+    }
     Number(newDelay);
     delay = newDelay;
-    varT.innerHTML = "Delay: " + delay + "ms";
+    varT.innerHTML = `<strong>${delay}ms</strong> <em>⏱ Delay</em>`;
 }
 
 // adiciona novo elemento -> no final do array
 function addItem(array) {
     let value = prompt("Digite um valor: ");
     array.push(Number(value)); // converte para número
-    varL.innerHTML = array.length; // atualiza o tamanho do array
+    varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atualiza o tamanho do array
     renderArray(array);
 }
 
@@ -49,7 +56,7 @@ function removeItem(array) {
     if (toRemove > -1) { // se o valor foi encontrado
         array.splice(toRemove, 1); // remove esse elemento
     }
-    varL.innerHTML = array.length; // atuaiza o tamanho do array
+    varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
     renderArray(array);
 }
 
@@ -66,7 +73,7 @@ async function bubbleSort(array, timing) {
     let i, fim, aux;
     for (fim = array.length - 1; fim > 0; fim--) {
         for (i = 0; i < fim; i++) {
-
+            steps++;
             // comparando
             renderArray(array);
             updateVars(array, i, fim, aux, timing);
@@ -104,5 +111,7 @@ async function bubbleSort(array, timing) {
         }
     }
     //
+
+
 }
 

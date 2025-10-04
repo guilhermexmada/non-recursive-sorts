@@ -109,7 +109,7 @@ section {
 .vars {
     width: 450px;
     height: 250px;
-    background-color: #fdc700;
+    /*background-color: #fdc700;*/
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -119,16 +119,45 @@ section {
 .var{
     width: 120px;
     height: 50px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     background-color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    user-select: none;
+}
+
+.var strong{
+    font-size: 16px;
+}
+
+.var em{
+    font-size: 12px;
 }
 
 .barr {
-    width: 400px;
+    width: 500px;
     height: 80px;
-    background-color: #432004;
+    /* background-color: #432004; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.barr button{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    font-size: 100%;
+}
+
+.barr button:active{
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
 /* arrays */
@@ -138,13 +167,18 @@ section {
     max-width: 800px;
     overflow-x: scroll;
     min-height: 80px;
-    background-color: white;
+    /* background-color: white; */
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
+.array-container::-webkit-scrollbar{
+    display: none;
+}
+
 .arrayItem {
+    user-select: none;
     min-width: 50px;
     min-height: 50px;
     background-color: #fdc700;
@@ -154,21 +188,28 @@ section {
     align-items: center;
     margin: 0 10px 0 10px;
     transition: background-color 300ms ease;
+    transition: transform 300ms ease-in-out;
+    color: #432004;
+    font-weight: bold;
 }
 
 .comparing {
     background-color:#fff085;
+    transform: scale(1);
 }
 
 .minor {
     background-color:#ffa2a2;
+    transform: scale(0.9);
 }
 
 .major {
     background-color:#ff6467;
+    transform: scale(1.2);
 }
 
 .sorted {
     background-color:#7bf1a8;
+    transform: scale(1);
 }
 
