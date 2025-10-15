@@ -213,3 +213,13 @@ section {
     transform: scale(1);
 }
 
+/* janela de diálogo */
+.dialog-container{
+    width: 400px;
+    height: 320px;
+    background-color: #ff6467;
+    position: absolute;
+    z-index: 1;
+    border-radius: 5%;
+}
+

@@ -6,6 +6,8 @@ const slider = document.getElementById("sld"); // slider que contém as telas
 
 let tela = 1; // tela inicial = bubble sort
 
+const dialogContainer = document.getElementById(`sec${tela}`); // janela de diálogo é inserida na tela atual
+
 // move a tela 
 function moveSlider(n) {
     tela = n;
@@ -26,4 +28,25 @@ function moveSlider(n) {
         insertion_link.classList.remove("active");
         slider.style.transform = "translateX(-200vw)";
     }
+}
+
+//  cria janela de diálogo
+function openDialog(title, description) {
+    
+    //  estrutura da janela
+    const dialog = document.createElement("div");
+    const dialogHeader = document.createElement("div");
+    const dialogBody = document.createElement("div");
+    const dialogConfirm = document.createElement("div");
+    dialog.className = "dialog-container";
+    dialogHeader.className = "dialog-header";
+    dialogBody.className = "dialog-body";
+    dialogConfirm.className = "dialog-confirm";
+
+    //  conteúdo da janela
+    const 
+
+    dialogContainer.appendChild(dialog);
+    
+//    prompt("hello world");
 }
