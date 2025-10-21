@@ -7,6 +7,7 @@ const slider = document.getElementById("sld"); // slider que contém as telas
 let tela = 1; // tela inicial = bubble sort
 
 const dialogContainer = document.getElementById(`sec${tela}`); // janela de diálogo é inserida na tela atual
+const dialog = document.querySelector(".dialog");
 
 // move a tela 
 function moveSlider(n) {
@@ -31,22 +32,73 @@ function moveSlider(n) {
 }
 
 //  cria janela de diálogo
-function openDialog(title, description) {
-    
-    //  estrutura da janela
-    const dialog = document.createElement("div");
-    const dialogHeader = document.createElement("div");
-    const dialogBody = document.createElement("div");
-    const dialogConfirm = document.createElement("div");
-    dialog.className = "dialog-container";
-    dialogHeader.className = "dialog-header";
-    dialogBody.className = "dialog-body";
-    dialogConfirm.className = "dialog-confirm";
+function openDialog(type, array) {
+    // aparecimento
+    dialog.style.display = "flex";
+    //  captura o titulo
+    let dialogTitle = document.querySelector(".dialog-title");
+    // captura o corpo da janela
+    let dialogBody = document.querySelector(".dialog-body");
+    // cria descrição
+    const desc = document.createElement("p");
+    dialogBody.appendChild(desc);
 
-    //  conteúdo da janela
-    const 
+    // captura o botão 'OK'
+    let dialogSuccess = document.querySelector(".dialog-success");
 
-    dialogContainer.appendChild(dialog);
-    
-//    prompt("hello world");
+    // cria input padrão
+    let textInput = document.createElement("input");
+    textInput.type = "text";
+
+    // atribui valores e funções respectivas
+    switch (type) {
+        case "add":
+            dialogBody.appendChild(textInput);
+            dialogTitle.innerHTML = "Adicionar item";
+            desc.innerHTML = "Digite o valor do novo elemento: ";
+            dialogSuccess.addEventListener("click", () => {
+                addItem(array, textInput.value);
+                closeDialog();
+            });
+            break;
+        case "remove":
+            dialogTitle.innerHTML = "Remover item";
+            desc.innerHTML = "Selecione o elemento para remover: ";
+            let selectContainer = document.createElement("div");
+            selectContainer.className = "select-container";
+            array.forEach(element => {
+                let selectInput = document.createElement("input");
+                selectInput.type = "checkbox";
+                selectInput.value = element;
+                dialogBody.appendChild(selectContainer);
+                selectContainer.appendChild(selectInput);
+                let label = document.createElement("label");
+                label.innerHTML = element;
+                selectContainer.appendChild(label);
+                selectContainer.appendChild(document.createElement("br"));
+            });
+            break;
+        case "time":
+            dialogBody.appendChild(textInput);
+            dialogTitle.innerHTML = "Definir delay";
+            desc.innerHTML = "Digite o tempo de animação em milissegundos: ";
+            dialogSuccess.addEventListener("click", () => {
+                setTime(textInput.value);
+                closeDialog();
+            });
+            break;
+        default:
+            dialogTitle.innerHTML = "Erro inesperado";
+            desc.innerHTML = "??? ";
+            break;
+    }
+
+
 }
+
+function closeDialog() {
+    dialog.style.display = "none";
+    let dialogBody = document.querySelector(".dialog-body");
+    dialogBody.innerHTML = "";
+}
+

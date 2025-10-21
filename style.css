@@ -214,12 +214,87 @@ section {
 }
 
 /* janela de diálogo */
-.dialog-container{
+.dialog{
     width: 400px;
-    height: 320px;
-    background-color: #ff6467;
-    position: absolute;
+    height: 350px;
+    margin-bottom: 100px;
+    background-color: #;
+    position: absolute; 
     z-index: 1;
-    border-radius: 5%;
+    border-radius: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    display: none;
 }
 
+.dialog-header{
+    width: 80%;
+    height: 15%;
+    padding: 0 10% 0 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: #7bf1a8; */
+}
+
+.dialog-header button{
+    width: 50px;
+    height: 50px;
+    border: none;
+}
+
+.dialog-title{
+    color: #fdc700;
+}
+
+.dialog-body{
+    width: 100%;
+    min-height: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff085;
+}
+
+.select-container{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.dialog-body .select-container input{
+    width: 25px;
+    height: 25px;
+}
+
+.dialog-body input{
+    width: 100px;
+    height: 50px;
+}
+
+
+.dialog-confirm{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: aquamarine;
+}
+
+.dialog-confirm button{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    font-size: 100%;
+}
+
+.dialog-confirm button:active{
+        box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}

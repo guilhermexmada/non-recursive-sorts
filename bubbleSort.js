@@ -31,8 +31,7 @@ function updateVars(array, i, fim, aux, time) {
 updateVars(bubbleArray, 0, bubbleArray.length - 1, "Undefined", delay)
 
 // define delay da animação
-function setTime() {
-    let newDelay = prompt("Digite o tempo de animação: ");
+function setTime(newDelay) {
     if(newDelay == null){
         newDelay = delay;
     }
@@ -42,9 +41,9 @@ function setTime() {
 }
 
 // adiciona novo elemento -> no final do array
-function addItem(array) {
-    let value = prompt("Digite um valor: ");
-    array.push(Number(value)); // converte para número
+function addItem(array, newItem) {
+    //let value = prompt("Digite um valor: ");
+    array.push(Number(newItem)); // converte para número
     varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atualiza o tamanho do array
     renderArray(array);
 }
