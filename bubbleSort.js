@@ -8,7 +8,7 @@ const varT = document.querySelector("#t");
 const varC = document.querySelector("#c");
 
 // array de exemplo
-let bubbleArray = [4,3,6,7,9,10,5,8,10,1];
+let bubbleArray = [4, 3, 6, 7, 9, 10,];
 // delay de animação inicial
 let delay = 3000;
 // passos
@@ -26,13 +26,13 @@ function updateVars(array, i, fim, aux, time) {
     varAux.innerHTML = `<strong>${aux}</strong> <em>📦 aux</em>`;
     varC.innerHTML = `<strong>${steps}</strong> <em>🟰 Iterações</em>`;
 }
- 
+
 // inicialiando os parâmetros no HTML
 updateVars(bubbleArray, 0, bubbleArray.length - 1, "Undefined", delay)
 
 // define delay da animação
 function setTime(newDelay) {
-    if(newDelay == null){
+    if (newDelay == null) {
         newDelay = delay;
     }
     Number(newDelay);
@@ -42,19 +42,29 @@ function setTime(newDelay) {
 
 // adiciona novo elemento -> no final do array
 function addItem(array, newItem) {
-    //let value = prompt("Digite um valor: ");
-    array.push(Number(newItem)); // converte para número
-    varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atualiza o tamanho do array
-    renderArray(array);
+    if(newItem == ''){
+        return;
+    }
+    let newNumber = Number(newItem); // converte para número
+    if (isNaN(newNumber)) { // se não for um número
+        alert("Por favor, digite um número!"); // porque está repetindo várias vezes esse alert?
+    } else {
+        array.push(newNumber); // adiciona novo elemento
+        varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atualiza o tamanho do array
+        renderArray(array); 
+    }
+
 }
 
 // remove elemento -> o primeiro com o valor indicado
-function removeItem(array) {
-    let value = prompt("Digite um valor em: " + bubbleArray);
-    let toRemove = array.indexOf(Number(value)); // procura a posição do valor indicado (a primeira que aparecer)
-    if (toRemove > -1) { // se o valor foi encontrado
-        array.splice(toRemove, 1); // remove esse elemento
-    }
+function removeItem(arrayToRemove, array) {
+    arrayToRemove.forEach(element => {
+        let toRemove = arrayToRemove.indexOf(Number(element)); // procura a posição do valor indicado (a primeira que aparecer)
+        if (toRemove > -1) { // se o valor foi encontrado
+            array.splice(toRemove, 1); // remove esse elemento
+        }
+    });
+
     varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
     renderArray(array);
 }

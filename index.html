@@ -33,17 +33,22 @@
 
             <!-- seção do bubble sort -->
             <section id="sec1">
+                <!-- janela de diálogo -->
                 <div class="dialog">
                     <div class="dialog-header">
                         <h1 class="dialog-title"></h1>
-                        <button onclick="closeDialog()">X</button>
+                        <button class="dialog-close">X</button>
                     </div>
-                    <div class="dialog-body"></div>
+                    <div class="dialog-body">
+                        <p class="dialog-desc"></p>
+                        <input required class="dialog-input" type="text" >
+                    </div>
                     <div class="dialog-confirm">
-                        <button>Cancel</button>
+                        <button class="dialog-cancel">Cancel</button>
                         <button class="dialog-success">OK</button>
                     </div>
                 </div>
+                <!-- fim da janela de diálogo -->
                 
                 <div class="control">
                     <!-- estado dos parâmetros bubbleSort -->
@@ -57,11 +62,11 @@
                     </div>
                     <!-- comandos do bubbleSort -->
                     <div class="barr">
-                        <button onclick="openDialog('add',bubbleArray)">➕</button>
-                        <button onclick="removeItem(bubbleArray)">❌</button>
+                        <button id="add" onclick="openDialog('add',bubbleArray)">➕</button>
+                        <button onclick="openDialog('remove',bubbleArray)">❌</button>
                         <button onclick="bubbleSort(bubbleArray, delay)">🔁</button>
                         <button onclick="openDialog('time')">🕒</button>
-                        <button onclick="openDialog('remove',bubbleArray)"></button>
+                        <button></button>
                         <!-- <button onclick="">Next</button> -->
                     </div>
                 </div>
