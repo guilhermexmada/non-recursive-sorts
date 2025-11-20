@@ -62,15 +62,28 @@
                     </div>
                     <!-- comandos do bubbleSort -->
                     <div class="barr">
-                        <button id="add" onclick="openDialog('add',bubbleArray)">➕</button>
-                        <button onclick="openDialog('remove',bubbleArray)">❌</button>
-                        <button onclick="bubbleSort(bubbleArray, delay)">🔁</button>
-                        <button onclick="openDialog('time')">🕒</button>
-                        <button></button>
+                        <button onclick="">➕</button>
+                        <button onclick="">❌</button>
+                        <button onclick="bubbleSort(bubbleArray, delay)">▶️</button>
+                        <button onclick="">🕒</button>
+                        <button onclick="">🔄</button>
                         <!-- <button onclick="">Next</button> -->
                     </div>
                 </div>
-                <div class="code"></div>
+                <div class="code">
+                    <p id="line-1">function bubbleSort(array, length){</p>
+                    <p id="line-2">let i, fim, aux;</p>
+                    <p id="line-3">for (fim = length - 1; fim > 0; fim--){</p>
+                    <p id="line-4">for (i = 0; i < fim; i++) {</p>
+                    <p id="line-5">if(array[i] > array[i + 1]){</p>
+                    <p id="line-6">aux = array[i];</p>
+                    <p id="line-7">array[i] = array[i + 1];</p>
+                    <p id="line-8">array[i + 1] = aux;</p>
+                    <p id="line-9">}</p>
+                    <p id="line-10">}</p>
+                    <p id="line-11">}</p>
+                    <p id="line-12">}</p>
+                </div>
             </section>
             <!-- seção do insertion sort -->
             <section id="sec2">

@@ -6,9 +6,6 @@ const slider = document.getElementById("sld"); // slider que contém as telas
 
 let tela = 1; // tela inicial = bubble sort
 
-const dialogContainer = document.getElementById(`sec${tela}`); // janela de diálogo é inserida na tela atual
-const dialog = document.querySelector(".dialog"); // janela de diálogo 
-
 // move a tela 
 function moveSlider(n) {
     tela = n;
@@ -31,56 +28,4 @@ function moveSlider(n) {
     }
 }
 
-//  cria janela de diálogo
-function openDialog(type, array) {
-    // desabilita botão
-    let btn = document.querySelector(`#${type}`);
-    btn.disabled = true;
-    // mostra a janela
-    dialog.style.display = "flex";
-    // captura título, corpo e descrição da janela
-    let dialogTitle = document.querySelector(".dialog-title");
-    let dialogBody = document.querySelector(".dialog-body");
-    let dialogDesc = document.querySelector(".dialog-desc");
-    // captura o botão de sucesso
-    let dialogSuccess = document.querySelector(".dialog-success");
-    // captura o input padrão
-    let textInput = document.querySelector(".dialog-input");
-
-    // atribui conteúdo e função respectiva
-    if (type == "add") {
-        // atribui titulo e descrição
-        dialogTitle.innerHTML = "Adicionar item";
-        dialogDesc.innerHTML = "Digite o valor do novo elemento: ";
-        // atribui função de confirmação
-        dialogSuccess.addEventListener("click", () => {
-            if(textInput.value == ''){ 
-                return; // não faz nada se o input estiver vazio
-            }
-            //alert(`${textInput.value}`);
-            addItem(array, textInput.value);
-            closeDialog(type);
-        })
-    }
-
-    // cria funções de fechar janela
-    let dialogClose = document.querySelector(".dialog-close");
-    let dialogCancel = document.querySelector(".dialog-cancel");
-    dialogClose.addEventListener("click", () => {
-        closeDialog(type);
-    })
-    dialogCancel.addEventListener("click", () => {
-        closeDialog(type);
-    })
-
-}
-
-// fecha janela de diálogo
-function closeDialog(type) {
-    let textInput = document.querySelector(".dialog-input");
-    let btn = document.querySelector(`#${type}`);
-    btn.disabled = false; // reabilita o botão
-    textInput.value = ''; // limpa o input 
-    dialog.style.display = "none"; // esconde a janela
-}
 

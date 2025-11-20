@@ -42,7 +42,7 @@ function setTime(newDelay) {
 
 // adiciona novo elemento -> no final do array
 function addItem(array, newItem) {
-    if(newItem == ''){
+    if (newItem == '') {
         return;
     }
     let newNumber = Number(newItem); // converte para número
@@ -51,19 +51,17 @@ function addItem(array, newItem) {
     } else {
         array.push(newNumber); // adiciona novo elemento
         varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atualiza o tamanho do array
-        renderArray(array); 
+        renderArray(array);
     }
 
 }
 
 // remove elemento -> o primeiro com o valor indicado
-function removeItem(arrayToRemove, array) {
-    arrayToRemove.forEach(element => {
-        let toRemove = arrayToRemove.indexOf(Number(element)); // procura a posição do valor indicado (a primeira que aparecer)
-        if (toRemove > -1) { // se o valor foi encontrado
-            array.splice(toRemove, 1); // remove esse elemento
-        }
-    });
+function removeItem(array, item) {
+    let toRemove = array.indexOf(Number(item)); // procura a posição do valor indicado (a primeira que aparecer)
+    if (toRemove > -1) { // se o valor foi encontrado
+        array.splice(toRemove, 1); // remove esse elemento
+    }
 
     varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
     renderArray(array);
@@ -77,25 +75,64 @@ function renderArray(array) {
     });
 }
 
+// destaca linhas de código
+function colorLine(array, action, num) {
+    let section;
+    // identifica qual a seção do código
+    if (array == "bubbleSort") {
+        section = "sec1";
+    }
+    // captura a linha especificada
+    let line = document.querySelector(`#${section} .code #line-${num}`);
+    // define se colore ou descolore
+    if (action == 'paint') {
+        line.style.backgroundColor = "green";
+    }
+    else if (action == 'unpaint') {
+        line.style.backgroundColor = "";
+    }
+}
+
 // ordena array usando bubble sort
 async function bubbleSort(array, timing) {
     let i, fim, aux;
     for (fim = array.length - 1; fim > 0; fim--) {
+
+        colorLine('bubbleSort', 'paint', 3)
+        await new Promise(resolve => setTimeout(resolve, timing));
+        colorLine('bubbleSort', 'unpaint', 3)
+
         for (i = 0; i < fim; i++) {
             steps++;
-            // comparando
+
+            colorLine('bubbleSort', 'paint', 4)
+            await new Promise(resolve => setTimeout(resolve, timing));
+            colorLine('bubbleSort', 'unpaint', 4)
+
+            // comparando elementos --- //
+
             renderArray(array);
             updateVars(array, i, fim, aux, timing);
+
             document.querySelector(`#b-${i}`).classList.add("comparing")
             document.querySelector(`#b-${i + 1}`).classList.add("comparing")
+            colorLine('bubbleSort', 'paint', 5)
+
             await new Promise(resolve => setTimeout(resolve, timing));
+
+            colorLine('bubbleSort', 'unpaint', 5)
+
+            // --- comparando elementos //
 
             if (array[i] > array[i + 1]) {
 
-                // troca vai acontecer
+                // sinalizando troca --- //
+
                 document.querySelector(`#b-${i}`).classList.add("major")
                 document.querySelector(`#b-${i + 1}`).classList.add("minor")
                 await new Promise(resolve => setTimeout(resolve, timing));
+
+                // --- sinalizando troca //
 
                 // troca de posições
                 aux = array[i];

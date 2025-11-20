@@ -105,6 +105,34 @@ section {
     align-items: center;
 }
 
+.code p{
+    text-align: justify;
+    width: 400px;
+    background-color: #27272a;
+    color: white;
+    user-select: none;
+}
+
+/* CÓDIGO BUBBLE SORT*/
+#sec1 .code #line-2, #line-12{
+    text-indent: 10px;
+}
+#sec1 .code #line-3, #line-11{
+    text-indent: 20px;
+}
+#sec1 .code #line-4, #line-10{
+    text-indent: 30px;
+}
+#sec1 .code #line-5{
+    text-indent: 40px;
+}
+#sec1 .code #line-6, #line-7,#line-8,#line-9{
+    text-indent: 50px;
+}
+
+
+
+
 /* controle */
 .vars {
     width: 450px;
@@ -213,7 +241,9 @@ section {
     transform: scale(1);
 }
 
-/* janela de diálogo */
+
+
+/* janela de diálogo ???????/ */
 .dialog{
     width: 400px;
     height: 350px;
