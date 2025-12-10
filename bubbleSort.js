@@ -32,7 +32,7 @@ updateVars(bubbleArray, 0, bubbleArray.length - 1, "Undefined", delay)
 
 // define delay da animação
 function setTime(newDelay) {
-    if (newDelay == null) {
+    if (newDelay == '' || newDelay == null) {
         newDelay = delay;
     }
     Number(newDelay); // converte em número

@@ -53,8 +53,12 @@ function editArray(array,action){
         let newItem = prompt("Digite um número para adicionar ao final do array: ");
         addItem(array, newItem);
     }
-    if(action == "remove"){
+    else if(action == "remove"){
         let indexToRemove = prompt(`Digite um número de 0 a ${array.length - 1} indicando a posição do item que será retirado:`);
         removeItem(array, indexToRemove);
+    } 
+    else if(action == "changeTime"){
+        let newTime = prompt("Digite o tempo da animação em milissegundos: ");
+        setTime(newTime);
     }
 }
