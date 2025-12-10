@@ -42,8 +42,8 @@ function setTime(newDelay) {
 
 // adiciona novo elemento -> no final do array
 function addItem(array, newItem) {
-    if (newItem == '') {
-        return;
+    if (newItem == '' || newItem == null) {
+        return; 
     }
     let newNumber = Number(newItem); // converte para número
     if (isNaN(newNumber)) { // se não for um número
@@ -57,12 +57,11 @@ function addItem(array, newItem) {
 }
 
 // remove elemento -> o primeiro com o valor indicado
-function removeItem(array, item) {
-    let toRemove = array.indexOf(Number(item)); // procura a posição do valor indicado (a primeira que aparecer)
-    if (toRemove > -1) { // se o valor foi encontrado
-        array.splice(toRemove, 1); // remove esse elemento
+function removeItem(array, index) {
+    if(index == '' || index == null){
+        return;
     }
-
+    array.splice(index, 1); // remove esse elemento
     varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
     renderArray(array);
 }

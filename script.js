@@ -53,4 +53,8 @@ function editArray(array,action){
         let newItem = prompt("Digite um número para adicionar ao final do array: ");
         addItem(array, newItem);
     }
+    if(action == "remove"){
+        let indexToRemove = prompt(`Digite um número de 0 a ${array.length - 1} indicando a posição do item que será retirado:`);
+        removeItem(array, indexToRemove);
+    }
 }
