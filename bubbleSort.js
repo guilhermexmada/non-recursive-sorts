@@ -8,7 +8,7 @@ const varT = document.querySelector("#t");
 const varC = document.querySelector("#c");
 
 // array de exemplo
-let bubbleArray = [1, 3, 2, 5, 4, 7, 6, 9, 8, 10];
+let bubbleArray = [1, 2, 3, 9, 8, 7, 10, 6, 4, 5];
 // delay de animação inicial
 let delay = 500;
 // passos
