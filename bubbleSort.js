@@ -8,9 +8,9 @@ const varT = document.querySelector("#t");
 const varC = document.querySelector("#c");
 
 // array de exemplo
-let bubbleArray = [4, 3, 6, 7, 9, 10,];
+let bubbleArray = [1,3,2,5,4,7,6,9,8,10];
 // delay de animação inicial
-let delay = 3000;
+let delay = 500;
 // passos
 let steps = 0;
 
@@ -27,7 +27,7 @@ function updateVars(array, i, fim, aux, time) {
     varC.innerHTML = `<strong>${steps}</strong> <em>🟰 Iterações</em>`;
 }
 
-// inicialiando os parâmetros no HTML
+// inicializando os parâmetros no HTML
 updateVars(bubbleArray, 0, bubbleArray.length - 1, "Undefined", delay)
 
 // define delay da animação
@@ -35,7 +35,7 @@ function setTime(newDelay) {
     if (newDelay == null) {
         newDelay = delay;
     }
-    Number(newDelay);
+    Number(newDelay); // converte em número
     delay = newDelay;
     varT.innerHTML = `<strong>${delay}ms</strong> <em>⏱ Delay</em>`;
 }
@@ -75,52 +75,32 @@ function renderArray(array) {
     });
 }
 
-// destaca linhas de código
-function colorLine(array, action, num) {
-    let section;
-    // identifica qual a seção do código
-    if (array == "bubbleSort") {
-        section = "sec1";
-    }
-    // captura a linha especificada
-    let line = document.querySelector(`#${section} .code #line-${num}`);
-    // define se colore ou descolore
-    if (action == 'paint') {
-        line.style.backgroundColor = "green";
-    }
-    else if (action == 'unpaint') {
-        line.style.backgroundColor = "";
-    }
-}
-
 // ordena array usando bubble sort
 async function bubbleSort(array, timing) {
     let i, fim, aux;
     for (fim = array.length - 1; fim > 0; fim--) {
 
+
         colorLine('bubbleSort', 'paint', 3)
-        await new Promise(resolve => setTimeout(resolve, timing));
+        await new Promise(resolve => setTimeout(resolve, timing/2)); // colore primeiro laço
         colorLine('bubbleSort', 'unpaint', 3)
 
         for (i = 0; i < fim; i++) {
-            steps++;
+            steps++; // conta as iterações
+
 
             colorLine('bubbleSort', 'paint', 4)
-            await new Promise(resolve => setTimeout(resolve, timing));
+            await new Promise(resolve => setTimeout(resolve, timing/2)); // colore segundo laço
             colorLine('bubbleSort', 'unpaint', 4)
 
             // comparando elementos --- //
-
             renderArray(array);
             updateVars(array, i, fim, aux, timing);
 
+            colorLine('bubbleSort', 'paint', 5)
             document.querySelector(`#b-${i}`).classList.add("comparing")
             document.querySelector(`#b-${i + 1}`).classList.add("comparing")
-            colorLine('bubbleSort', 'paint', 5)
-
-            await new Promise(resolve => setTimeout(resolve, timing));
-
-            colorLine('bubbleSort', 'unpaint', 5)
+            await new Promise(resolve => setTimeout(resolve, timing)); // colore a condicional
 
             // --- comparando elementos //
 
@@ -130,28 +110,47 @@ async function bubbleSort(array, timing) {
 
                 document.querySelector(`#b-${i}`).classList.add("major")
                 document.querySelector(`#b-${i + 1}`).classList.add("minor")
-                await new Promise(resolve => setTimeout(resolve, timing));
+                await new Promise(resolve => setTimeout(resolve, timing)); // descolore condicional
+                colorLine('bubbleSort', 'unpaint', 5)
 
                 // --- sinalizando troca //
 
-                // troca de posições
+                // troca de posições --- //
                 aux = array[i];
+                colorLine('bubbleSort', 'paint', 6)
+                //renderArray(array);
+                await new Promise(resolve => setTimeout(resolve, timing)); // colore as linhas de troca
                 array[i] = array[i + 1];
+                colorLine('bubbleSort', 'paint', 7)
+                //renderArray(array);
+                await new Promise(resolve => setTimeout(resolve, timing)); // colore as linhas de troca
                 array[i + 1] = aux;
+                colorLine('bubbleSort', 'paint', 8)
+                //renderArray(array);
+                await new Promise(resolve => setTimeout(resolve, timing)); // colore as linhas de troca
+                colorLine('bubbleSort', 'unpaint', 6)
+                colorLine('bubbleSort', 'unpaint', 7)
+                colorLine('bubbleSort', 'unpaint', 8)
+
+                // --- troca de posições //
 
                 // renderiza array
                 renderArray(array);
-                //troca feita
+                // troca bem-sucedida --- //
                 document.querySelector(`#b-${i}`).classList.add("sorted")
                 document.querySelector(`#b-${i + 1}`).classList.add("sorted")
                 updateVars(array, i, fim, aux, timing);
                 await new Promise(resolve => setTimeout(resolve, timing));
+                // --- troca bem-sucedida //
 
             } else {
-                //troca não feita
+                // troca não feita --- //
                 document.querySelector(`#b-${i}`).classList.add("minor")
                 document.querySelector(`#b-${i + 1}`).classList.add("major")
                 await new Promise(resolve => setTimeout(resolve, timing));
+                colorLine('bubbleSort', 'unpaint', 5) 
+                renderArray(array);
+                // --- troca não feita //
             }
 
         }

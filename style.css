@@ -111,9 +111,10 @@ section {
     background-color: #27272a;
     color: white;
     user-select: none;
+    padding: 3px 5px 3px 5px;
 }
 
-/* CÓDIGO BUBBLE SORT*/
+/* IDENTAÇÃO CÓDIGO BUBBLE SORT*/
 #sec1 .code #line-2, #line-12{
     text-indent: 10px;
 }
@@ -129,8 +130,6 @@ section {
 #sec1 .code #line-6, #line-7,#line-8,#line-9{
     text-indent: 50px;
 }
-
-
 
 
 /* controle */
@@ -165,6 +164,7 @@ section {
 .var em{
     font-size: 12px;
 }
+
 
 .barr {
     width: 500px;

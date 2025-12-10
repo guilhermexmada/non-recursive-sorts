@@ -29,3 +29,28 @@ function moveSlider(n) {
 }
 
 
+// destaca linhas de código
+function colorLine(array, action, num) {
+    let section;
+    // identifica qual a seção do código
+    if (array == "bubbleSort") {
+        section = "sec1";
+    }
+    // captura a linha especificada
+    let line = document.querySelector(`#${section} .code #line-${num}`);
+    // define se colore ou descolore
+    if (action == 'paint') {
+        line.style.backgroundColor = "green";
+    }
+    else if (action == 'unpaint') {
+        line.style.backgroundColor = "";
+    }
+}
+
+// entrada de informações
+function editArray(array,action){
+    if(action == "insert"){
+        let newItem = prompt("Digite um número para adicionar ao final do array: ");
+        addItem(array, newItem);
+    }
+}
