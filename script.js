@@ -62,3 +62,15 @@ function editArray(array,action){
         setTime(newTime);
     }
 }
+
+// abre janela de diálogo
+function openDialog(id){
+    let win = document.querySelector(`.dialog ${id}`);
+    win.style.display = 'flex';
+}
+// fecha janela de diálogo
+function closeDialog(id){
+    let win = document.querySelector(`.dialog ${id}`);
+    win.style.display = 'none';
+}
+

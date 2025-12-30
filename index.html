@@ -36,28 +36,17 @@
             <section id="sec1">
                 <!-- janela de informações 1 -->
 
-                <div class="dialog info">
-                    
+                <div class="dialog 1">
+                    <div class="dialog-header">
+                        <h2>Title</h2>
+                        <button onclick="closeDialog(1)">X</button>
+                    </div>
+                    <div class="dialog-body">
+                        <p></p>
+                    </div>
                 </div>
 
                  <!-- fim da janela de informações 1 -->
-
-                <!-- janela de diálogo -->
-                <!-- <div class="dialog">
-                    <div class="dialog-header">
-                        <h1 class="dialog-title"></h1>
-                        <button class="dialog-close">X</button>
-                    </div>
-                    <div class="dialog-body">
-                        <p class="dialog-desc"></p>
-                        <input required class="dialog-input" type="text" >
-                    </div>
-                    <div class="dialog-confirm">
-                        <button class="dialog-cancel">Cancel</button>
-                        <button class="dialog-success">OK</button>
-                    </div>
-                </div> -->
-                <!-- fim da janela de diálogo -->
                 
                 <div class="control">
                     <!-- estado dos parâmetros bubbleSort -->
@@ -76,6 +65,7 @@
                         <button onclick="bubbleSort(bubbleArray, delay)">▶️</button>
                         <button onclick="editArray(bubbleArray,'changeTime')">🕒</button>
                         <button onclick="location.reload()">🔄</button>
+                        <button onclick="openDialog(1)">?</button>
                         <!-- <button onclick="">Next</button> -->
                     </div>
                 </div>
