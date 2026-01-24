@@ -1,34 +1,59 @@
 const bubbleContainer = document.querySelector("#bubble-sort-container"); // container do array
-// parâmetros no HTML
+const insertionContainer = document.querySelector("#insertion-sort-container"); // container do array
+//  parâmetros do BubbleSort no HTML
 const varI = document.querySelector("#i");
 const varFim = document.querySelector("#fim");
 const varAux = document.querySelector("#aux");
 const varL = document.querySelector("#l");
 const varT = document.querySelector("#t");
 const varC = document.querySelector("#c");
+// parâmetros do InsertionSort no HTML
+const insVarI = document.querySelector("#ins-i");
+const insVarJ = document.querySelector("#ins-j");
+const insVarAux = document.querySelector("#ins-aux");
+const insVarL = document.querySelector("#ins-l");
+const insVarT = document.querySelector("#ins-t");
+const insVarC = document.querySelector("#ins-c");
 
 // array de exemplo
-let bubbleArray = [1, 2, 3, 9, 8, 7, 10, 6, 4, 5];
+let bubbleArray = [1, 2, 3, 10, 5, 4];
+let insertionArray = [90, 10, 30, 20, 5];
 // delay de animação inicial
 let delay = 500;
+let insDelay = 500;
 // passos
 let steps = 0;
+let insSteps = 0;
 
 // renderiza array
 renderArray(bubbleArray);
+renderArray(insertionArray);
 
 // atualizando os parâmetros no HTML
 function updateVars(array, i, fim, aux, time) {
-  varT.innerHTML = `<strong>${time}ms</strong> <em>⏱ Delay</em>`;
-  varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
-  varI.innerHTML = `<strong>${i}</strong> <em>📦 i</em>`;
-  varFim.innerHTML = `<strong>${fim}</strong> <em>📦 fim</em>`;
-  varAux.innerHTML = `<strong>${aux}</strong> <em>📦 aux</em>`;
-  varC.innerHTML = `<strong>${steps}</strong> <em>🟰 Iterações</em>`;
+  if (array == bubbleArray) {
+    varT.innerHTML = `<strong>${time}ms</strong> <em>⏱ Delay</em>`;
+    varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
+    varI.innerHTML = `<strong>${i}</strong> <em>📦 i</em>`;
+    varFim.innerHTML = `<strong>${fim}</strong> <em>📦 fim</em>`;
+    varAux.innerHTML = `<strong>${aux}</strong> <em>📦 aux</em>`;
+    varC.innerHTML = `<strong>${steps}</strong> <em>🟰 Iterações</em>`;
+  } else if (array == insertionArray) {
+    insVarT.innerHTML = `<strong>${time}ms</strong> <em>⏱ Delay</em>`;
+    insVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
+    insVarI.innerHTML = `<strong>${i}</strong> <em>📦 i</em>`;
+    insVarJ.innerHTML = `<strong>${fim}</strong> <em>📦 j</em>`;
+    insVarAux.innerHTML = `<strong>${aux}</strong> <em>📦 aux</em>`;
+    insVarC.innerHTML = `<strong>${insSteps}</strong> <em>🟰 Iterações</em>`;
+  }
 }
 
-// inicializando os parâmetros no HTML
+// inicializando os parâmetros BubbleSort no HTML
 updateVars(bubbleArray, 0, bubbleArray.length - 1, "Undefined", delay);
+
+// inicializando os parâmetros InsertionSort no HTML
+updateVars(insertionArray, 0, 1, "Undefined", insDelay);
+
 
 // define delay da animação
 function setTime(newDelay) {
@@ -77,10 +102,17 @@ function removeItem(array, index) {
 
 // exibe array no estado atual
 function renderArray(array) {
-  bubbleContainer.innerHTML = "";
-  array.forEach((value, index) => {
-    bubbleContainer.innerHTML += `<div id='b-${index}' class='arrayItem'>${value}</div>`;
-  });
+  if (array == bubbleArray) {
+    bubbleContainer.innerHTML = "";
+    array.forEach((value, index) => {
+      bubbleContainer.innerHTML += `<div id='b-${index}' class='arrayItem'>${value}</div>`;
+    });
+  } else if (array == insertionArray) {
+    insertionContainer.innerHTML = "";
+    array.forEach((value, index) => {
+      insertionContainer.innerHTML += `<div id='ins-${index}' class='arrayItem'>${value}</div>`;
+    })
+  }
 }
 
 // ordena array usando bubble sort
@@ -158,4 +190,28 @@ async function bubbleSort(array, timing) {
     }
   }
   //
+}
+
+// ordena array usando insertion sort
+async function insertionSort(array, timing) {
+  let i = 0;
+  let j = 1;
+  let aux = 0;
+  while(j < array.length){
+    insSteps++;
+
+    aux = array[j];
+    i = j - 1;
+    
+    while((i >= 0) && (array[i] > aux)){
+      array[i + 1] = array[i];
+      i = i - 1;
+      
+    }
+    array[i + 1] = aux;
+    j = j + 1;
+    
+  }
+  renderArray(array);
+  updateVars(array, i, j, aux, timing);
 }

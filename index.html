@@ -28,7 +28,9 @@
                 <div class="view-part" id="vp1">
                     <div id="bubble-sort-container" class="array-container"></div>
                 </div>
-                <div class="view-part" id="vp2"></div>
+                <div class="view-part" id="vp2">
+                    <div id="insertion-sort-container" class="array-container"></div>
+                </div>
                 <div class="view-part" id="vp3"></div>
             </div>
 
@@ -87,10 +89,41 @@
             <!-- seção do insertion sort -->
             <section id="sec2">
                 <div class="control">
-                    <div class="vars"></div>
-                    <div class="barr"></div>
+                    <div class="vars">
+                        <div class="var" id="ins-i"></div>
+                        <div class="var" id="ins-j"></div>
+                        <div class="var" id="ins-aux"></div>
+                        <div class="var" id="ins-t"></div>
+                        <div class="var" id="ins-l"></div>
+                        <div class="var" id="ins-c"></div>
+                    </div>
+                    <div class="barr">
+                        <button onclick="editArray(insertionArray,'insert')">➕</button>
+                        <button onclick="editArray(insertionArray,'remove')">❌</button>
+                        <button onclick="insertionSort(insertionArray, insDelay)">▶️</button>
+                        <button onclick="editArray(insertionArray,'changeTime')">🕒</button>
+                        <button onclick="location.reload()">🔄</button>
+                        <button onclick="openDialog(1)">?</button>
+                        <!-- <button onclick="">Next</button> -->
+                    </div>
                 </div>
-                <div class="code"></div>
+                <div class="code">
+                    <p id="line-1">function insertionSort(array, length){</p>
+                    <p id="line-2">let i = 0;</p>
+                    <p id="line-3">let j = 1;</p>
+                    <p id="line-4">let aux = 0;</p>
+                    <p id="line-5">while(j < length){</p>
+                    <p id="line-6">aux = array[j];</p>
+                    <p id="line-7">i = j - 1;</p>
+                    <p id="line-8">while((i >= 0) && (array[i] > aux)){</p>
+                    <p id="line-9">array[i + 1] = array[i];</p>
+                    <p id="line-10">i = i - 1;</p>
+                    <p id="line-11">}</p>
+                    <p id="line-12">array[i + 1] = aux;</p>
+                    <p id="line-13">j = j + 1;</p>
+                    <p id="line-14">}</p>
+                    <p id="line-15">}</p>
+                </div>
             </section>
             <!-- seção do selection sort -->
             <section id="sec3">
