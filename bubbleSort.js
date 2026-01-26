@@ -88,7 +88,12 @@ function addItem(array, newItem) {
     return;
   } else {
     array.push(newNumber); // adiciona novo elemento
-    varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atualiza o tamanho do array
+    // atualiza a variável HTML correspondente
+    if(array == bubbleArray){
+          varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atualiza o tamanho do array
+    } else if(array == insertionArray){
+        insVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
+    }
     renderArray(array);
   }
 }
