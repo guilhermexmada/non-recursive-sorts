@@ -59,7 +59,7 @@ function editArray(array,action){
     } 
     else if(action == "changeTime"){
         let newTime = prompt("Digite o tempo da animação em milissegundos: ");
-        setTime(newTime);
+        setTime(array, newTime);
     }
 }
 

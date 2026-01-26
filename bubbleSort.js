@@ -56,7 +56,7 @@ updateVars(insertionArray, 0, 1, "Undefined", insDelay);
 
 
 // define delay da animação
-function setTime(newDelay) {
+function setTime(array, newDelay) {
   if (newDelay == "" || newDelay == null) {
     newDelay = delay;
   } else if (isNaN(newDelay)) {
@@ -64,8 +64,15 @@ function setTime(newDelay) {
     return;
   } else {
     Number(newDelay); // converte em número
-    delay = newDelay;
-    varT.innerHTML = `<strong>${delay}ms</strong> <em>⏱ Delay</em>`;
+    // define o delay para o array escolhido
+    if(array == bubbleArray){
+      delay = newDelay;
+      varT.innerHTML = `<strong>${delay}ms</strong> <em>⏱ Delay</em>`;
+    } else if(array == insertionArray){
+      insDelay = newDelay;
+      insVarT.innerHTML = `<strong>${insDelay}ms</strong> <em>⏱ Delay</em>`;
+      //alert(insDelay);
+    }
   }
 }
 
