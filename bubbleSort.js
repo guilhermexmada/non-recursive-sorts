@@ -107,7 +107,12 @@ function removeItem(array, index) {
     return;
   } else {
     array.splice(index, 1); // remove esse elemento
-    varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
+    // atualiza a variável HTML correspondente
+    if(array == bubbleArray){
+      varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
+    } else if(array == insertionArray){
+      insVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
+    }
     renderArray(array);
   }
 }
