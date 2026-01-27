@@ -214,20 +214,37 @@ async function insertionSort(array, timing) {
   let i = 0;
   let j = 1;
   let aux = 0;
-  while(j < array.length){
+  while(j < array.length){ // compara até percorrer todo vetor
     insSteps++;
 
-    aux = array[j];
-    i = j - 1;
-    
-    while((i >= 0) && (array[i] > aux)){
+    colorLine("insertionSort", "paint", 5);
+    await new Promise((resolve) => setTimeout(resolve, timing / 2)); // colore primeiro laço
+    colorLine("insertionSort", "unpaint", 5);
+
+    aux = array[j]; // aux recebe valor atual
+
+    colorLine("insertionSort", "paint", 6); // colore linha da atualização do aux 
+    updateVars(array, i, j, aux, timing); // atualiza aux no HTML
+    await new Promise((resolve) => setTimeout(resolve, timing)); 
+
+    colorLine("insertionSort", "unpaint", 6);
+
+    i = j - 1; // redefine antecessor
+
+    colorLine("insertionSort", "paint", 7); // colore linha da atualização do 'i'
+    updateVars(array, i, j, aux, timing); // atualiza 'i' no HTML
+    await new Promise((resolve) => setTimeout(resolve, timing));
+
+    colorLine("insertionSort", "unpaint", 7);
+
+    while((i >= 0) && (array[i] > aux)){ // se antecessor > atual, troca posições
+
       array[i + 1] = array[i];
-      i = i - 1;
+      i = i - 1; 
       
-    }
-    array[i + 1] = aux;
-    j = j + 1;
-    
+    } 
+    array[i + 1] = aux; // valor atual passa para trás
+    j = j + 1; // posição atual avança
   }
   renderArray(array);
   updateVars(array, i, j, aux, timing);

@@ -35,6 +35,8 @@ function colorLine(array, action, num) {
     // identifica qual a seção do código
     if (array == "bubbleSort") {
         section = "sec1";
+    } else if(array == "insertionSort"){
+        section = "sec2";
     }
     // captura a linha especificada
     let line = document.querySelector(`#${section} .code #line-${num}`);
