@@ -65,10 +65,10 @@ function setTime(array, newDelay) {
   } else {
     Number(newDelay); // converte em número
     // define o delay para o array escolhido
-    if(array == bubbleArray){
+    if (array == bubbleArray) {
       delay = newDelay;
       varT.innerHTML = `<strong>${delay}ms</strong> <em>⏱ Delay</em>`;
-    } else if(array == insertionArray){
+    } else if (array == insertionArray) {
       insDelay = newDelay;
       insVarT.innerHTML = `<strong>${insDelay}ms</strong> <em>⏱ Delay</em>`;
       //alert(insDelay);
@@ -89,10 +89,10 @@ function addItem(array, newItem) {
   } else {
     array.push(newNumber); // adiciona novo elemento
     // atualiza a variável HTML correspondente
-    if(array == bubbleArray){
-          varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atualiza o tamanho do array
-    } else if(array == insertionArray){
-        insVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
+    if (array == bubbleArray) {
+      varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atualiza o tamanho do array
+    } else if (array == insertionArray) {
+      insVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
     }
     renderArray(array);
   }
@@ -108,9 +108,9 @@ function removeItem(array, index) {
   } else {
     array.splice(index, 1); // remove esse elemento
     // atualiza a variável HTML correspondente
-    if(array == bubbleArray){
+    if (array == bubbleArray) {
       varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
-    } else if(array == insertionArray){
+    } else if (array == insertionArray) {
       insVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
     }
     renderArray(array);
@@ -214,7 +214,7 @@ async function insertionSort(array, timing) {
   let i = 0;
   let j = 1;
   let aux = 0;
-  while(j < array.length){ // compara até percorrer todo vetor
+  while (j < array.length) { // compara até percorrer todo vetor
     insSteps++;
 
     colorLine("insertionSort", "paint", 5);
@@ -225,7 +225,7 @@ async function insertionSort(array, timing) {
 
     colorLine("insertionSort", "paint", 6); // colore linha da atualização do aux 
     updateVars(array, i, j, aux, timing); // atualiza aux no HTML
-    await new Promise((resolve) => setTimeout(resolve, timing)); 
+    await new Promise((resolve) => setTimeout(resolve, timing));
 
     colorLine("insertionSort", "unpaint", 6);
 
@@ -237,15 +237,60 @@ async function insertionSort(array, timing) {
 
     colorLine("insertionSort", "unpaint", 7);
 
-    while((i >= 0) && (array[i] > aux)){ // se antecessor > atual, troca posições
+    colorLine("insertionSort", "paint", 8); // colore linha da comparação
+    document.querySelector(`#ins-${i}`).classList.add("comparing");
+    document.querySelector(`#ins-${j}`).classList.add("comparing");
+    await new Promise((resolve) => setTimeout(resolve, timing));
 
-      array[i + 1] = array[i];
-      i = i - 1; 
-      
-    } 
+    while ((i >= 0) && (array[i] > aux)) { // se antecessor > atual, troca posições
+
+      document.querySelector(`#ins-${i}`).classList.add("major");
+      document.querySelector(`#ins-${j}`).classList.add("minor");
+      await new Promise((resolve) => setTimeout(resolve, timing)); // destaca maior e menor
+      document.querySelector(`#ins-${i}`).classList.remove("major", "comparing");
+      document.querySelector(`#ins-${j}`).classList.remove("minor", "comparing");
+      colorLine("insertionSort", "unpaint", 8); // descolore linha da comparação
+
+      array[i + 1] = array[i]; // valor antecessor passa para frente
+
+      colorLine("insertionSort", "paint", 9);
+      updateVars(array, i, j, aux, timing);
+      renderArray(array);
+      document.querySelector(`#ins-${i}`).classList.add("comparing");
+      document.querySelector(`#ins-${i + 1}`).classList.add("sorted");
+      await new Promise((resolve) => setTimeout(resolve, timing)); // destaca troca
+      document.querySelector(`#ins-${i}`).classList.remove("comparing");
+      document.querySelector(`#ins-${j}`).classList.remove("sorted");
+
+      colorLine("insertionSort", "unpaint", 9);
+
+      i = i - 1; // antecessor diminui
+
+      colorLine("insertionSort", "paint", 10);
+      updateVars(array, i, j, aux, timing);
+      await new Promise((resolve) => setTimeout(resolve, timing));
+      colorLine("insertionSort", "unpaint", 10);
+
+    }
+
     array[i + 1] = aux; // valor atual passa para trás
+
+    
+
+    colorLine("insertionSort", "paint", 12);
+    updateVars(array, i, j, aux, timing);
+    renderArray(array);
+    document.querySelector(`#ins-${i + 1}`).classList.add("sorted");
+    await new Promise((resolve) => setTimeout(resolve, timing)); // destaca troca
+    document.querySelector(`#ins-${i + 1}`).classList.remove("sorted");
+    colorLine("insertionSort", "unpaint", 12);
+
     j = j + 1; // posição atual avança
+
+    colorLine("insertionSort", "paint", 13);
+    updateVars(array, i, j, aux, timing);
+    await new Promise((resolve) => setTimeout(resolve, timing));
+    colorLine("insertionSort", "unpaint", 13);
   }
-  renderArray(array);
-  updateVars(array, i, j, aux, timing);
 }
+
