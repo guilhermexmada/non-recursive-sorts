@@ -31,7 +31,9 @@
                 <div class="view-part" id="vp2">
                     <div id="insertion-sort-container" class="array-container"></div>
                 </div>
-                <div class="view-part" id="vp3"></div>
+                <div class="view-part" id="vp3">
+                    <div id="selection-sort-container" class="array-container"></div>
+                </div>
             </div>
 
             <!-- seção do bubble sort -->
@@ -128,8 +130,24 @@
             <!-- seção do selection sort -->
             <section id="sec3">
                 <div class="control">
-                    <div class="vars"></div>
-                    <div class="barr"></div>
+                    <div class="vars">
+                        <div class="var" id="sel-i"></div>
+                        <div class="var" id="sel-j"></div>
+                        <div class="var" id="sel-min"></div>
+                        <div class="var" id="sel-aux"></div>
+                        <div class="var" id="sel-t"></div>
+                        <div class="var" id="sel-l"></div>
+                        <div class="var" id="sel-c"></div>
+                    </div>
+                    <div class="barr">
+                        <button onclick="editArray(selectionArray,'insert')">➕</button>
+                        <button onclick="editArray(selectionArray,'remove')">❌</button>
+                        <button onclick="insertionSort(selectionArray, selDelay)">▶️</button>
+                        <button onclick="editArray(selectionArray,'changeTime')">🕒</button>
+                        <button onclick="location.reload()">🔄</button>
+                        <button onclick="openDialog(1)">?</button>
+                        <!-- <button onclick="">Next</button> -->
+                    </div>
                 </div>
                 <div class="code"></div>
             </section>

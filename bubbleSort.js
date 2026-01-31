@@ -1,5 +1,6 @@
 const bubbleContainer = document.querySelector("#bubble-sort-container"); // container do array
 const insertionContainer = document.querySelector("#insertion-sort-container"); // container do array
+const selectionContainer = document.querySelector("#selection-sort-container"); // container do array
 //  parâmetros do BubbleSort no HTML
 const varI = document.querySelector("#i");
 const varFim = document.querySelector("#fim");
@@ -14,20 +15,32 @@ const insVarAux = document.querySelector("#ins-aux");
 const insVarL = document.querySelector("#ins-l");
 const insVarT = document.querySelector("#ins-t");
 const insVarC = document.querySelector("#ins-c");
+// parâmetros do SelectionSort no HTML
+const selVarI = document.querySelector("#sel-i");
+const selVarJ = document.querySelector("#sel-j");
+const selVarMin = document.querySelector("#sel-min");
+const selVarAux = document.querySelector("#sel-aux");
+const selVarL = document.querySelector("#sel-l");
+const selVarT = document.querySelector("#sel-t");
+const selVarC = document.querySelector("#sel-c");
 
 // array de exemplo
 let bubbleArray = [1, 2, 3, 10, 5, 4];
 let insertionArray = [90, 10, 30, 20, 5];
+let selectionArray = [100, 300, 200, 500, 400];
 // delay de animação inicial
 let delay = 500;
 let insDelay = 500;
+let selDelay = 500;
 // passos
 let steps = 0;
 let insSteps = 0;
+let selSteps = 0;
 
 // renderiza array
 renderArray(bubbleArray);
 renderArray(insertionArray);
+renderArray(selectionArray);
 
 // atualizando os parâmetros no HTML
 function updateVars(array, i, fim, aux, time) {
@@ -45,6 +58,14 @@ function updateVars(array, i, fim, aux, time) {
     insVarJ.innerHTML = `<strong>${fim}</strong> <em>📦 j</em>`;
     insVarAux.innerHTML = `<strong>${aux}</strong> <em>📦 aux</em>`;
     insVarC.innerHTML = `<strong>${insSteps}</strong> <em>🟰 Iterações</em>`;
+  } else if(array == selectionArray) {
+    selVarT.innerHTML = `<strong>${time}ms</strong> <em>⏱ Delay</em>`;
+    selVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
+    selVarI.innerHTML = `<strong>${i}</strong> <em>📦 i</em>`;
+    selVarJ.innerHTML = `<strong>${fim}</strong> <em>📦 j</em>`;
+    // selVarMin precisa de parâmetro
+    selVarAux.innerHTML = `<strong>${aux}</strong> <em>📦 aux</em>`;
+    selVarC.innerHTML = `<strong>${insSteps}</strong> <em>🟰 Iterações</em>`;
   }
 }
 
@@ -53,6 +74,9 @@ updateVars(bubbleArray, 0, bubbleArray.length - 1, "Undefined", delay);
 
 // inicializando os parâmetros InsertionSort no HTML
 updateVars(insertionArray, 0, 1, "Undefined", insDelay);
+
+// inicializando os parâmetros SelectionSort no HTML
+updateVars(selectionArray, 0, 0, "Undefined", selDelay);
 
 
 // define delay da animação
@@ -71,6 +95,10 @@ function setTime(array, newDelay) {
     } else if (array == insertionArray) {
       insDelay = newDelay;
       insVarT.innerHTML = `<strong>${insDelay}ms</strong> <em>⏱ Delay</em>`;
+      //alert(insDelay);
+    } else if (array == selectionArray) {
+      selDelay = newDelay;
+      selVarT.innerHTML = `<strong>${selDelay}ms</strong> <em>⏱ Delay</em>`;
       //alert(insDelay);
     }
   }
@@ -128,6 +156,11 @@ function renderArray(array) {
     insertionContainer.innerHTML = "";
     array.forEach((value, index) => {
       insertionContainer.innerHTML += `<div id='ins-${index}' class='arrayItem'>${value}</div>`;
+    })
+  } else if (array == selectionArray) {
+    selectionContainer.innerHTML = "";
+    array.forEach((value, index) => {
+      selectionContainer.innerHTML += `<div id='sel-${index}' class='arrayItem'>${value}</div>`;
     })
   }
 }
@@ -251,11 +284,11 @@ async function insertionSort(array, timing) {
         await new Promise((resolve) => setTimeout(resolve, timing)); // destaca maior e menor
         document.querySelector(`#ins-${i}`).classList.remove("major", "comparing");
         document.querySelector(`#ins-${j}`).classList.remove("minor", "comparing");
-      }else{ // caso o ELEMENTO ANTECESSOR FOR MAIOR QUE O VALOR NO AUX, E NÃO NECESSARIAMENTE DO QUE O SUCESSOR
+      } else { // caso o ELEMENTO ANTECESSOR FOR MAIOR QUE O VALOR NO AUX, E NÃO NECESSARIAMENTE DO QUE O SUCESSOR
         await new Promise((resolve) => setTimeout(resolve, timing));
         document.querySelector(`#ins-${i}`).classList.remove("comparing");
         document.querySelector(`#ins-${i}`).classList.add("major");
-        await new Promise((resolve) => setTimeout(resolve, timing)); 
+        await new Promise((resolve) => setTimeout(resolve, timing));
         document.querySelector(`#ins-${i}`).classList.remove("major");
       }
 
