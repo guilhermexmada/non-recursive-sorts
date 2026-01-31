@@ -237,18 +237,28 @@ async function insertionSort(array, timing) {
 
     colorLine("insertionSort", "unpaint", 7);
 
-    colorLine("insertionSort", "paint", 8); // colore linha da comparação
-    document.querySelector(`#ins-${i}`).classList.add("comparing");
-    document.querySelector(`#ins-${j}`).classList.add("comparing");
-    await new Promise((resolve) => setTimeout(resolve, timing));
+    while ((i >= 0) && (array[i] > aux)) { // se valor antecessor > valor atual, troca posições
 
-    while ((i >= 0) && (array[i] > aux)) { // se antecessor > atual, troca posições
+      colorLine("insertionSort", "paint", 8); // colore linha da comparação
+      document.querySelector(`#ins-${i}`).classList.add("comparing");
 
-      document.querySelector(`#ins-${i}`).classList.add("major");
-      document.querySelector(`#ins-${j}`).classList.add("minor");
-      await new Promise((resolve) => setTimeout(resolve, timing)); // destaca maior e menor
-      document.querySelector(`#ins-${i}`).classList.remove("major", "comparing");
-      document.querySelector(`#ins-${j}`).classList.remove("minor", "comparing");
+      if (array[i] > array[j]) { // destaca troca SE O ELEMENTO ANTECESSOR FOR MAIOR QUE O SUCESSOR
+        document.querySelector(`#ins-${j}`).classList.add("comparing");
+        await new Promise((resolve) => setTimeout(resolve, timing));
+
+        document.querySelector(`#ins-${i}`).classList.add("major");
+        document.querySelector(`#ins-${j}`).classList.add("minor");
+        await new Promise((resolve) => setTimeout(resolve, timing)); // destaca maior e menor
+        document.querySelector(`#ins-${i}`).classList.remove("major", "comparing");
+        document.querySelector(`#ins-${j}`).classList.remove("minor", "comparing");
+      }else{ // caso o ELEMENTO ANTECESSOR FOR MAIOR QUE O VALOR NO AUX, E NÃO NECESSARIAMENTE DO QUE O SUCESSOR
+        await new Promise((resolve) => setTimeout(resolve, timing));
+        document.querySelector(`#ins-${i}`).classList.remove("comparing");
+        document.querySelector(`#ins-${i}`).classList.add("major");
+        await new Promise((resolve) => setTimeout(resolve, timing)); 
+        document.querySelector(`#ins-${i}`).classList.remove("major");
+      }
+
       colorLine("insertionSort", "unpaint", 8); // descolore linha da comparação
 
       array[i + 1] = array[i]; // valor antecessor passa para frente
@@ -275,7 +285,7 @@ async function insertionSort(array, timing) {
 
     array[i + 1] = aux; // valor atual passa para trás
 
-    
+
 
     colorLine("insertionSort", "paint", 12);
     updateVars(array, i, j, aux, timing);
