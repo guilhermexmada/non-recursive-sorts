@@ -43,7 +43,7 @@ renderArray(insertionArray);
 renderArray(selectionArray);
 
 // atualizando os parâmetros no HTML
-function updateVars(array, i, fim, aux, time) {
+function updateVars(array, i, fim, aux, min, time) {
   if (array == bubbleArray) {
     varT.innerHTML = `<strong>${time}ms</strong> <em>⏱ Delay</em>`;
     varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
@@ -63,20 +63,20 @@ function updateVars(array, i, fim, aux, time) {
     selVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
     selVarI.innerHTML = `<strong>${i}</strong> <em>📦 i</em>`;
     selVarJ.innerHTML = `<strong>${fim}</strong> <em>📦 j</em>`;
-    // selVarMin precisa de parâmetro
+    selVarMin.innerHTML= `<strong>${min}</strong> <em>📦 min</em>`;
     selVarAux.innerHTML = `<strong>${aux}</strong> <em>📦 aux</em>`;
-    selVarC.innerHTML = `<strong>${insSteps}</strong> <em>🟰 Iterações</em>`;
+    selVarC.innerHTML = `<strong>${selSteps}</strong> <em>🟰 Iterações</em>`;
   }
 }
 
 // inicializando os parâmetros BubbleSort no HTML
-updateVars(bubbleArray, 0, bubbleArray.length - 1, "Undefined", delay);
+updateVars(bubbleArray, 0, bubbleArray.length - 1, "Undefined", 0 , delay);
 
 // inicializando os parâmetros InsertionSort no HTML
-updateVars(insertionArray, 0, 1, "Undefined", insDelay);
+updateVars(insertionArray, 0, 1, "Undefined", 0 , insDelay);
 
 // inicializando os parâmetros SelectionSort no HTML
-updateVars(selectionArray, 0, 0, "Undefined", selDelay);
+updateVars(selectionArray, 0, 0, "Undefined", 0 , selDelay);
 
 
 // define delay da animação
@@ -182,7 +182,7 @@ async function bubbleSort(array, timing) {
 
       // comparando elementos --- //
       renderArray(array);
-      updateVars(array, i, fim, aux, timing);
+      updateVars(array, i, fim, aux, 0, timing);
 
       colorLine("bubbleSort", "paint", 5);
       document.querySelector(`#b-${i}`).classList.add("comparing");
@@ -225,7 +225,7 @@ async function bubbleSort(array, timing) {
         // troca bem-sucedida --- //
         document.querySelector(`#b-${i}`).classList.add("sorted");
         document.querySelector(`#b-${i + 1}`).classList.add("sorted");
-        updateVars(array, i, fim, aux, timing);
+        updateVars(array, i, fim, aux, 0, timing);
         await new Promise((resolve) => setTimeout(resolve, timing));
         // --- troca bem-sucedida //
       } else {
@@ -257,7 +257,7 @@ async function insertionSort(array, timing) {
     aux = array[j]; // aux recebe valor atual
 
     colorLine("insertionSort", "paint", 6); // colore linha da atualização do aux 
-    updateVars(array, i, j, aux, timing); // atualiza aux no HTML
+    updateVars(array, i, j, aux, 0, timing); // atualiza aux no HTML
     await new Promise((resolve) => setTimeout(resolve, timing));
 
     colorLine("insertionSort", "unpaint", 6);
@@ -265,7 +265,7 @@ async function insertionSort(array, timing) {
     i = j - 1; // redefine antecessor
 
     colorLine("insertionSort", "paint", 7); // colore linha da atualização do 'i'
-    updateVars(array, i, j, aux, timing); // atualiza 'i' no HTML
+    updateVars(array, i, j, aux, 0, timing); // atualiza 'i' no HTML
     await new Promise((resolve) => setTimeout(resolve, timing));
 
     colorLine("insertionSort", "unpaint", 7);
@@ -297,7 +297,7 @@ async function insertionSort(array, timing) {
       array[i + 1] = array[i]; // valor antecessor passa para frente
 
       colorLine("insertionSort", "paint", 9);
-      updateVars(array, i, j, aux, timing);
+      updateVars(array, i, j, aux, 0, timing);
       renderArray(array);
       document.querySelector(`#ins-${i}`).classList.add("comparing");
       document.querySelector(`#ins-${i + 1}`).classList.add("sorted");
@@ -310,7 +310,7 @@ async function insertionSort(array, timing) {
       i = i - 1; // antecessor diminui
 
       colorLine("insertionSort", "paint", 10);
-      updateVars(array, i, j, aux, timing);
+      updateVars(array, i, j, aux, 0, timing);
       await new Promise((resolve) => setTimeout(resolve, timing));
       colorLine("insertionSort", "unpaint", 10);
 
@@ -321,7 +321,7 @@ async function insertionSort(array, timing) {
 
 
     colorLine("insertionSort", "paint", 12);
-    updateVars(array, i, j, aux, timing);
+    updateVars(array, i, j, aux, 0, timing);
     renderArray(array);
     document.querySelector(`#ins-${i + 1}`).classList.add("sorted");
     await new Promise((resolve) => setTimeout(resolve, timing)); // destaca troca
@@ -331,9 +331,39 @@ async function insertionSort(array, timing) {
     j = j + 1; // posição atual avança
 
     colorLine("insertionSort", "paint", 13);
-    updateVars(array, i, j, aux, timing);
+    updateVars(array, i, j, aux, 0, timing);
     await new Promise((resolve) => setTimeout(resolve, timing));
     colorLine("insertionSort", "unpaint", 13);
   }
 }
 
+async function selectionSort(array, timing){
+  i = 0;
+  j = 0;
+  min = 0;
+  aux = 0;
+
+  for(i = 0; i < (array.length - 1); i++){
+    selSteps++;
+
+    min = i;
+
+    for(j = (i + 1); j < array.length; j++){
+
+      if(array[j] < array[min]){
+
+        min = j;
+
+      } 
+      if(array[i] != array[min]){
+
+        aux = array[i];
+        array[i] = array[min];
+        array[min] = aux;
+
+      }
+    }
+  }
+  renderArray(selectionArray);
+  updateVars(selectionArray, i, j, aux, min, selDelay);
+}
