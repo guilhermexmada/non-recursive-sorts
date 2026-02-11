@@ -37,6 +37,8 @@ function colorLine(array, action, num) {
         section = "sec1";
     } else if(array == "insertionSort"){
         section = "sec2";
+    } else if(array == "selectionSort"){
+        section = "sec3";
     }
     // captura a linha especificada
     let line = document.querySelector(`#${section} .code #line-${num}`);
