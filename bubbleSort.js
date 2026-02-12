@@ -121,6 +121,8 @@ function addItem(array, newItem) {
       varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atualiza o tamanho do array
     } else if (array == insertionArray) {
       insVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
+    } else if(array == selectionArray){
+      selVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
     }
     renderArray(array);
   }
