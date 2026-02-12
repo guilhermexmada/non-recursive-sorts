@@ -140,6 +140,8 @@ function removeItem(array, index) {
       varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
     } else if (array == insertionArray) {
       insVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
+    } else if (array == selectionArray){
+      selVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
     }
     renderArray(array);
   }
