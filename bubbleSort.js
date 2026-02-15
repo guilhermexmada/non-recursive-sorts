@@ -58,25 +58,25 @@ function updateVars(array, i, fim, aux, min, time) {
     insVarJ.innerHTML = `<strong>${fim}</strong> <em>📦 j</em>`;
     insVarAux.innerHTML = `<strong>${aux}</strong> <em>📦 aux</em>`;
     insVarC.innerHTML = `<strong>${insSteps}</strong> <em>🟰 Iterações</em>`;
-  } else if(array == selectionArray) {
+  } else if (array == selectionArray) {
     selVarT.innerHTML = `<strong>${time}ms</strong> <em>⏱ Delay</em>`;
     selVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
     selVarI.innerHTML = `<strong>${i}</strong> <em>📦 i</em>`;
     selVarJ.innerHTML = `<strong>${fim}</strong> <em>📦 j</em>`;
-    selVarMin.innerHTML= `<strong>${min}</strong> <em>📦 min</em>`;
+    selVarMin.innerHTML = `<strong>${min}</strong> <em>📦 min</em>`;
     selVarAux.innerHTML = `<strong>${aux}</strong> <em>📦 aux</em>`;
     selVarC.innerHTML = `<strong>${selSteps}</strong> <em>🟰 Iterações</em>`;
   }
 }
 
 // inicializando os parâmetros BubbleSort no HTML
-updateVars(bubbleArray, 0, bubbleArray.length - 1, "Undefined", 0 , delay);
+updateVars(bubbleArray, 0, bubbleArray.length - 1, "Undefined", 0, delay);
 
 // inicializando os parâmetros InsertionSort no HTML
-updateVars(insertionArray, 0, 1, "Undefined", 0 , insDelay);
+updateVars(insertionArray, 0, 1, "Undefined", 0, insDelay);
 
 // inicializando os parâmetros SelectionSort no HTML
-updateVars(selectionArray, 0, 0, "Undefined", 0 , selDelay);
+updateVars(selectionArray, 0, 0, "Undefined", 0, selDelay);
 
 
 // define delay da animação
@@ -121,7 +121,7 @@ function addItem(array, newItem) {
       varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atualiza o tamanho do array
     } else if (array == insertionArray) {
       insVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
-    } else if(array == selectionArray){
+    } else if (array == selectionArray) {
       selVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`;
     }
     renderArray(array);
@@ -142,7 +142,7 @@ function removeItem(array, index) {
       varL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
     } else if (array == insertionArray) {
       insVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
-    } else if (array == selectionArray){
+    } else if (array == selectionArray) {
       selVarL.innerHTML = `<strong>${array.length}</strong> <em>📏 Tamanho</em>`; // atuaiza o tamanho do array
     }
     renderArray(array);
@@ -322,8 +322,6 @@ async function insertionSort(array, timing) {
 
     array[i + 1] = aux; // valor atual passa para trás
 
-
-
     colorLine("insertionSort", "paint", 12);
     updateVars(array, i, j, aux, 0, timing);
     renderArray(array);
@@ -341,33 +339,129 @@ async function insertionSort(array, timing) {
   }
 }
 
-async function selectionSort(array, timing){
-  i = 0;
-  j = 0;
-  min = 0;
-  aux = 0;
+async function selectionSort(array, timing) {
+  let i, j, min, aux;
 
-  for(i = 0; i < (array.length - 1); i++){
+  for (i = 0; i < (array.length - 1); i++) {
     selSteps++;
+    updateVars(array, i, j, aux, min, timing);
+
+    // COLORE PRIMEIRO LAÇO //
+    colorLine("selectionSort", "paint", 6);
+    await new Promise((resolve) => setTimeout(resolve, timing));
+    colorLine("selectionSort", "unpaint", 6);
 
     min = i;
+    updateVars(array, i, j, aux, min, timing);
 
-    for(j = (i + 1); j < array.length; j++){
+    // COLORE MIN = I //
+    colorLine("selectionSort", "paint", 7);
+    await new Promise((resolve) => setTimeout(resolve, timing));
+    colorLine("selectionSort", "unpaint", 7);
 
-      if(array[j] < array[min]){
+    //alert("pausa");
+
+    for (j = (i + 1); j < array.length; j++) {
+      updateVars(array, i, j, aux, min, timing);
+
+      // COLORE SEGUNDO LAÇO //
+      colorLine("selectionSort", "paint", 8);
+      await new Promise((resolve) => setTimeout(resolve, timing));
+      colorLine("selectionSort", "unpaint", 8);
+
+      // COLORE PRIMEIRA CONDICIONAL //
+      colorLine("selectionSort", "paint", 9);
+      document.querySelector(`#sel-${j}`).classList.add("comparing");
+      document.querySelector(`#sel-${min}`).classList.add("comparing");
+      await new Promise((resolve) => setTimeout(resolve, timing));
+      document.querySelector(`#sel-${j}`).classList.remove("comparing");
+      document.querySelector(`#sel-${min}`).classList.remove("comparing");
+      colorLine("selectionSort", "unpaint", 9);
+
+      //alert("pausa");
+
+      if (array[j] < array[min]) {
+
+        // COLORE PRIMEIRA CONDICIONAL SE FOR VERDADE //
+        colorLine("selectionSort", "paint", 9);
+        document.querySelector(`#sel-${j}`).classList.add("minor");
+        document.querySelector(`#sel-${min}`).classList.add("major");
+        await new Promise((resolve) => setTimeout(resolve, timing));
+        document.querySelector(`#sel-${j}`).classList.remove("minor");
+        document.querySelector(`#sel-${min}`).classList.remove("major");
+        colorLine("selectionSort", "unpaint", 9);
 
         min = j;
+        updateVars(array, i, j, aux, min, timing);
 
-      } 
-      if(array[i] != array[min]){
+        // COLORE MIN = J //
+        colorLine("selectionSort", "paint", 10);
+        await new Promise((resolve) => setTimeout(resolve, timing));
+        colorLine("selectionSort", "unpaint", 10);
+
+      } else if (array[j] >= array[min]) {
+        // SE PRIMEIRA CONDICIONAL FOR FALSA //
+        colorLine("selectionSort", "paint", 9);
+        document.querySelector(`#sel-${j}`).classList.add("major");
+        document.querySelector(`#sel-${min}`).classList.add("minor");
+        await new Promise((resolve) => setTimeout(resolve, timing));
+        document.querySelector(`#sel-${j}`).classList.remove("major");
+        document.querySelector(`#sel-${min}`).classList.remove("minor");
+        colorLine("selectionSort", "unpaint", 9);
+      }
+
+      //alert("pausa");
+
+      // COLORE SEGUNDA CONDICIONAL //
+      colorLine("selectionSort", "paint", 12);
+      document.querySelector(`#sel-${i}`).classList.add("comparing");
+      document.querySelector(`#sel-${min}`).classList.add("comparing");
+      await new Promise((resolve) => setTimeout(resolve, timing));
+      document.querySelector(`#sel-${i}`).classList.remove("comparing");
+      document.querySelector(`#sel-${min}`).classList.remove("comparing");
+      colorLine("selectionSort", "unpaint", 12);
+
+      if (array[i] != array[min]) {
+
+        // COLORE SEGUNDA CONDICIONAL SE FOR VERDADEIRA //
+        colorLine("selectionSort", "paint", 12);
+        document.querySelector(`#sel-${i}`).classList.add("minor");
+        document.querySelector(`#sel-${min}`).classList.add("minor");
+        await new Promise((resolve) => setTimeout(resolve, timing));
+        document.querySelector(`#sel-${i}`).classList.remove("minor");
+        document.querySelector(`#sel-${min}`).classList.remove("minor");
+
+        //alert("pausa");
+
+        // COLORE A TROCA //        
 
         aux = array[i];
-        array[i] = array[min];
-        array[min] = aux;
+        updateVars(array, i, j, aux, min, timing);
+        colorLine("selectionSort", "paint", 13);
+        await new Promise((resolve) => setTimeout(resolve, timing));
 
+        array[i] = array[min];
+        renderArray(array);
+        document.querySelector(`#sel-${i}`).classList.add("sorted");
+        colorLine("selectionSort", "paint", 14);
+        await new Promise((resolve) => setTimeout(resolve, timing));
+
+        array[min] = aux;
+        renderArray(array);
+        document.querySelector(`#sel-${min}`).classList.add("sorted");
+        colorLine("selectionSort", "paint", 15);
+        await new Promise((resolve) => setTimeout(resolve, timing));
+
+        document.querySelector(`#sel-${i}`).classList.remove("sorted");
+        document.querySelector(`#sel-${min}`).classList.remove("sorted");
+        colorLine("selectionSort", "unpaint", 12);
+        colorLine("selectionSort", "unpaint", 13);
+        colorLine("selectionSort", "unpaint", 14);
+        colorLine("selectionSort", "unpaint", 15);
       }
     }
   }
-  renderArray(selectionArray);
-  updateVars(selectionArray, i, j, aux, min, selDelay);
+
+  renderArray(array);
+  //updateVars(array, i, j, aux, min, selDelay);
 }
