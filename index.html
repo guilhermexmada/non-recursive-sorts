@@ -40,13 +40,21 @@
             <section id="sec1">
                 <!-- janela de informações 1 -->
 
-                <div class="dialog 1">
+                <div class="dialog" id="dialog-1">
                     <div class="dialog-header">
-                        <h2>Title</h2>
+                        <h2>🫧 Como funciona o BubbleSort ?</h2>
                         <button onclick="closeDialog(1)">X</button>
                     </div>
                     <div class="dialog-body">
-                        <p></p>
+                        <p>A estrutura bubble sort é um algoritmo de ordenação não recursivo que usa a técnica de trocas sucessivas.</p>
+                        <br>
+                        <p>A cada passo, compara elementos vizinhos e se eles estiverem desordenados, posiciona (flutua) o maior ou menor elemento para o fim da lista.</p>
+                        <br>
+                        <p>Esse processo se repete várias vezes, até que toda a lista esteja ordenada.</p>
+                        <br>
+                        <p>✏️ Fácil de entender e implementar</p>
+                        <p>📉 Lento para listas grandes, que exigem várias comparações</p>
+                        <p>📒 Usado mais para ensino do que em sistemas reais</p>
                     </div>
                 </div>
 
@@ -90,6 +98,26 @@
             </section>
             <!-- seção do insertion sort -->
             <section id="sec2">
+                <div class="dialog" id="dialog-2">
+                    <div class="dialog-header">
+                        <h2>📥 Como funciona o InsertionSort ?</h2>
+                        <button onclick="closeDialog(2)">X</button>
+                    </div>
+                    <div class="dialog-body">
+                        <p>A estrutura insertion sort é um algoritmo de ordenação não recursivo que lembra a organização de um baralho de cartas.</p>
+                        <br>
+                        <p>Ele começa assumindo que o primeiro elemento já está ordenado. Então, sempre compara o próximo elemento com os seus antecessores.</p>
+                        <br>
+                        <p>Após as comparações terminarem, insere o elemento atual na posição correta. Os elementos desorganizados são "empurrados" para o fim da lista.</p>
+                        <br>
+                        <p>Dessa forma, o insertion sort constrói uma lista ordenada à esquerda, um item por vez.</p>
+                        <br>
+                        <p>✏️ Fácil de entender e implementar</p>
+                        <p>📏 Eficiente para listas pequenas ou quase ordenadas</p>
+                        <p>📉 Lento para listas grandes</p>
+                    </div>
+                </div>
+
                 <div class="control">
                     <div class="vars">
                         <div class="var" id="ins-i"></div>
@@ -105,7 +133,7 @@
                         <button onclick="insertionSort(insertionArray, insDelay)">▶️</button>
                         <button onclick="editArray(insertionArray,'changeTime')">🕒</button>
                         <button onclick="location.reload()">🔄</button>
-                        <button onclick="openDialog(1)">?</button>
+                        <button onclick="openDialog(2)">?</button>
                         <!-- <button onclick="">Next</button> -->
                     </div>
                 </div>
@@ -129,6 +157,24 @@
             </section>
             <!-- seção do selection sort -->
             <section id="sec3">
+                <div class="dialog" id="dialog-3">
+                    <div class="dialog-header">
+                        <h2>🎯 Como funciona o SelectionSort ?</h2>
+                        <button onclick="closeDialog(3)">X</button>
+                    </div>
+                    <div class="dialog-body">
+                        <p>A estrutura selection sort é um algoritmo de ordenação não recursivo que procura os valores extremos da lista e os posiciona corretamente.</p>
+                        <br>
+                        <p>Primeiro, ele procura o menor ou maior valor da lista e o coloca na primeira posição.</p>
+                        <br>
+                        <p>Depois, procura o menor ou maior que sobrou e coloca na segunda posição. E assim, sucessivamente, até ordenar toda a lista.</p>
+                        <br>
+                        <p>✏️ Simples de entender</p>
+                        <p>🧮 Sempre faz o mesmo número de comparações</p>
+                        <p>📉 Não é rápido para listas grandes</p>
+                    </div>
+                </div>
+
                 <div class="control">
                     <div class="vars">
                         <div class="var" id="sel-i"></div>
@@ -145,7 +191,7 @@
                         <button onclick="selectionSort(selectionArray, selDelay)">▶️</button>
                         <button onclick="editArray(selectionArray,'changeTime')">🕒</button>
                         <button onclick="location.reload()">🔄</button>
-                        <button onclick="openDialog(1)">?</button>
+                        <button onclick="openDialog(3)">?</button>
                         <!-- <button onclick="">Next</button> -->
                     </div>
                 </div>
