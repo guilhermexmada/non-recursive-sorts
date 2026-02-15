@@ -162,6 +162,30 @@ section {
     text-indent: 20px;
 }
 
+/* IDENTAÇÃO CÓDIGO SELECTION SORT */
+#sec3 .code p{
+    font-size: 10px;
+}
+
+#sec3 .code #line-2, #line-3, #line-4, #line-5, #line-6{
+    text-indent: 10px;
+}
+
+#sec3 .code #line-, #line-18{
+    text-indent: 20px;
+}
+
+#sec3 .code #line-8, #line-17{
+    text-indent: 30px;
+}
+
+#sec3 .code #line-9, #line-11, #line-12, #line-16{
+    text-indent: 40px;
+}
+
+#sec3 .code #line-13, #line-14, #line-15{
+    text-indent: 50px;
+}
 
 /* controle */
 .vars {
