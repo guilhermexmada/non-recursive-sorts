@@ -78,3 +78,10 @@ function closeDialog(id){
     win.style.display = 'none';
 }
 
+// texto de apresentação do projeto
+const info = `
+    Olá! Seja-bem vindo ao meu projeto pessoal de algoritmos de ordenação não recursivos!
+    Usando HTML, CSS e JS, fiz esse site para visualizar estruturas como bubble sort, insertion sort e selection sort de forma mais intuitiva.
+    É um projeto pequeno e simples (você deve encontrar vários bugs e melhorias para fazer) mas me ajudou a exercitar meus conhecimentos de programação web.
+    Espero que goste!
+`;

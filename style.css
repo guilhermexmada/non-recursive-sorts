@@ -56,13 +56,15 @@ footer {
     align-items: center;
 }
 
-footer img{
-    width: 15px;
-    margin-left: 8px;
+footer img, ion-icon{
+    max-width: 20px;
+    margin-left: 10px;
 }
+
 
 footer *{
     user-select: none;
+    margin: 0 5px 0 5px;
 }
 
 .slider {
