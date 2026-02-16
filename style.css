@@ -40,6 +40,7 @@ nav a {
     font-weight: bold;
     color: #432004;
     transition: color 500ms ease;
+    user-select: none;
 }
 
 .active {
@@ -58,6 +59,10 @@ footer {
 footer img{
     width: 15px;
     margin-left: 8px;
+}
+
+footer *{
+    user-select: none;
 }
 
 .slider {
@@ -110,7 +115,7 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 .code p{
@@ -239,6 +244,7 @@ section {
     border: none;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
     font-size: 100%;
+    user-select: none;
 }
 
 .barr button:active{
@@ -258,9 +264,28 @@ section {
     align-items: center;
 }
 
-.array-container::-webkit-scrollbar{
-    /* display: none; */
+/* largura da barra */
+::-webkit-scrollbar {
+  width: 10px;
 }
+
+/* fundo da barra */
+::-webkit-scrollbar-track {
+  /* background: #f1f1f1; */
+}
+
+/* parte que se move */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
 
 .arrayItem {
     user-select: none;
